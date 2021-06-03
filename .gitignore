@@ -32,4 +32,9 @@ npm-debug.log
 # OSX hidden files
 .DS_Store
 
+# VSCode workspace file
 *.code-workspace
+
+# Node Env Directory
+env/
+env-14/
