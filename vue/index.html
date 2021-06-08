@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Message App</title>
+    <title>Messages App</title>
     <style>
       [v-cloak] {
         display: none;
@@ -20,30 +20,30 @@
   </head>
   <body>
     <div id="app" v-cloak>
-      <message-list v-bind:items="messages" @delete="deleteMessage" />
-      <ul>
-        <li v-for="message in messages">
-          {{ message.text }} - {{ message.createdAt }}
-          <button @click="deleteMessage(message)">X</button>
-        </li>
-      </ul>
-      <form v-on:submit.prevent="addMessage">
+      <message-list :items="messages" @delete="deleteMessage"></message-list>
+      <form @submit.prevent="addMessage">
         <textarea
-          v-focus
+          id="newMessage"
           v-model="newMessage"
           placeholder="Leave a message"
+          v-focus
         ></textarea>
-        <div>
-          <button v-bind:disabled="addDisabled" type="submit">Add</button>
-        </div>
+        <div><button :disabled="addDisabled" type="submit">Add</button></div>
       </form>
     </div>
+    <!-- <script src="../vue.js"></script>   -->
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
     <script type="module">
       import MessageList from './components/MessageList.js';
+      import LifecycleLogger from './plugins/lifecycle-logger.plugin.js';
       import './directives/focus.directive.js';
-      let vm = new Vue({
+      import './filters/datetime.filter.js';
+
+      Vue.use(LifecycleLogger, { beforeMount: false });
+
+      window.vm = new Vue({
         el: '#app',
+        name: 'MessagesApp',
         data: {
           messages: [],
           newMessage: '',
@@ -53,11 +53,12 @@
             return this.messages.length >= 10 || this.newMessage.length > 50;
           },
         },
+        components: {
+          MessageList,
+        },
         methods: {
           addMessage(event) {
-            if (!this.newMessage) {
-              return;
-            }
+            if (!this.newMessage) return;
             let now = new Date();
             this.messages.push({
               id: now.getTime(),
@@ -69,9 +70,6 @@
           deleteMessage(message) {
             this.messages.splice(this.messages.indexOf(message), 1);
           },
-        },
-        components: {
-          MessageList,
         },
       });
     </script>
