@@ -1,0 +1,4 @@
+logging:
+  level:
+    root: info
+    app.sample.messages.filter.AuditingFilter: debug
