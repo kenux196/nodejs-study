@@ -2,3 +2,10 @@ logging:
   level:
     root: info
     app.sample.messages.filter.AuditingFilter: debug
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app_messages?useSSL=false
+    username: study
+    password: study
+    driver-class-name: org.postgresql.Driver
