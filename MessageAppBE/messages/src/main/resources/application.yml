@@ -2,6 +2,7 @@ logging:
   level:
     root: info
     app.sample.messages.filter.AuditingFilter: debug
+    app.sample.messages.filter.SecurityChecker: debug
     org.hibernate.SQL: debug
 
 spring:
