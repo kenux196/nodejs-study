@@ -1,4 +1,4 @@
-package app.sample.messages.filter;
+package app.sample.messages.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class SecurityChecker {
-    @Pointcut("@annotation(app.sample.messages.filter.annotation.SecurityCheck)")
+    @Pointcut("@annotation(app.sample.messages.security.SecurityCheck)")
     public void checkMethodSecurity() {}
 
     @Around("checkMethodSecurity()")

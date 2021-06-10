@@ -4,16 +4,18 @@ import app.sample.messages.domain.Message;
 import app.sample.messages.dto.MessageData;
 import app.sample.messages.service.MessageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
-//@ResponseBody
-@RequestMapping("/messages")
 public class MessageController {
 
     private final MessageService messageService;
@@ -32,7 +34,18 @@ public class MessageController {
         return mv;
     }
 
-    @PostMapping
+    @GetMapping("/messages")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/api/messages")
+    public ResponseEntity<List<Message>> getMessages() {
+        List<Message> messages = messageService.getMessages();
+        return ResponseEntity.ok(messages);
+    }
+
+    @PostMapping("/api/messages")
     @ResponseBody
     public ResponseEntity<Message> saveMessage(@RequestBody MessageData data) {
         Message saved = messageService.save(data.getText());
@@ -40,5 +53,11 @@ public class MessageController {
             return ResponseEntity.status(500).build();
         }
         return ResponseEntity.ok(saved);
+    }
+
+    @DeleteMapping(value = "/api/messages")
+    public ResponseEntity<String> deleteMessage(@RequestParam(value = "id") long id) {
+        messageService.delete(id);
+        return ResponseEntity.ok("Removed message: " + id);
     }
 }

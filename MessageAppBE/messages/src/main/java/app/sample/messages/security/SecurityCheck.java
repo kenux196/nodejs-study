@@ -1,4 +1,4 @@
-package app.sample.messages.filter.annotation;
+package app.sample.messages.security;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
