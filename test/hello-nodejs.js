@@ -18,6 +18,7 @@ user.greeting = function () {
   console.log("Hi, I'm " + this.name + '.');
 };
 user.greeting();
+console.table(user.interests);
 // 2. 객체 리터럴
 var user = {
   name: 'Sunny',
@@ -37,7 +38,7 @@ function User(name, interests) {
   this.interests = interests;
   this.greeting = function () {
     console.log("Hi, I'm " + this.name + '.');
-  }
+  };
 }
 var user = new User('Sunny', ['Traveling', 'Swimming']);
 user.greeting();
