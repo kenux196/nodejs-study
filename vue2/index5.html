@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+<html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Component Registration Quiz</title>
   </head>
   <body>
@@ -8,17 +9,17 @@
       <my-component1></my-component1>
       <my-component2></my-component2>
     </div>
-    <hr>
+    <hr />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>
       // 첫 번째 컴포넌트 내용
       var cmp1 = {
         template: '<div>첫 번째 지역 컴포넌트 : {{ cmp1Data }}</div>',
-        data: function() {
+        data: function () {
           return {
-            cmp1Data: 100
-          }
-        }
+            cmp1Data: 100,
+          };
+        },
       };
 
       // 두 번째 컴포넌트 내용
@@ -26,17 +27,17 @@
         template: '<div>두 번째 지역 컴포넌트 : {{ cmp2Data }}</div>',
         data() {
           return {
-            com2Data: cmp1.data.cmp1Data
-          }
+            com2Data: cmp1.data.cmp1Data,
+          };
         },
       };
       new Vue({
         el: '#app',
         components: {
           'my-component1': cmp1,
-          'my-component2': cmp2
-        }
-      })
+          'my-component2': cmp2,
+        },
+      });
     </script>
   </body>
 </html>
