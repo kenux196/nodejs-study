@@ -11,6 +11,12 @@
       <p v-bind:class="classA">클래스 바인딩</p>
       <p v-bind:style="styleA">스타일 바인딩</p>
     </div>
+    <div id="app2">
+      <p>{{ message }}</p>
+      <p>{{ message + "!!!" }}</p>
+      <p>{{ message.split('').reverse().join('') }}</p>
+      <p>{{ reversedMessage }}</p>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -23,6 +29,17 @@
             classA: 'container',
             styleA: 'color: blue',
           };
+        },
+      });
+      new Vue({
+        el: '#app2',
+        data: {
+          message: 'Hello Vue.js',
+        },
+        computed: {
+          reversedMessage: function () {
+            return this.message.split('').reverse().join('');
+          },
         },
       });
     </script>
