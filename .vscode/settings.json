@@ -1,0 +1,22 @@
+{
+  "editor.fontSize": 12,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+  "eslint.workingDirectories": [
+      {"mode": "auto"}
+  ],
+  "eslint.format.enable": true,
+  "eslint.options": {
+      "configFile": ".eslintrc.js"
+  },
+  "eslint.validate":  [
+    "vue",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html"
+  ],
+}
