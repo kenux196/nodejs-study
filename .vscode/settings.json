@@ -1,9 +1,8 @@
 {
-  "editor.fontSize": 12,
   "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
   },
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "eslint.workingDirectories": [
       {"mode": "auto"}
   ],
@@ -19,4 +18,12 @@
     "typescriptreact",
     "html"
   ],
+  "[typescript]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "editor.formatOnSave": true,
+  },  
 }

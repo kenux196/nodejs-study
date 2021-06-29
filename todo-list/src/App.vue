@@ -18,7 +18,7 @@ export default {
   components: { 
     // 로컬 컴포넌트 등록
     ToDoItem
-  },
+  }
   data() {
     return {
       ToDoItems: [

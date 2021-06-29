@@ -17,5 +17,8 @@ export default {
       isDone: this.done,
     };
   },
+  created() {
+    console.log('created()');
+  },
 };
 </script>
