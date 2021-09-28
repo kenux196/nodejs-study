@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue.js 연습장 5: 리스트 렌더링</title>
+  </head>
+  <body>    
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <header>리스트 렌더링 v-for</header>
+    <ul id="example-1">
+      <li v-for="item in items">
+        {{ item.message }}
+      </li>
+    </ul>
+    <ul id='example-2'>
+      <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+      </li>
+    </ul>
+    <ul id="v-for-object" class="demo">
+      <li v-for="value in object">
+        {{ value }}
+      </li>
+      <p>-------------------------</p>
+      <li v-for="(value, name) in object">
+        {{ name }} : {{ value }}
+      </li>
+      <p>-------------------------</p>
+      <li v-for="(value, name, index) in object">
+        {{ index }}. {{ name }} : {{ value }}
+      </li>
+      <li v-for="n in evenNumbers"> {{ n }}</li>
+    </ul>
+
+    <script>
+      var example1 = new Vue({
+        el: '#example-1',
+        data() {
+          return {
+            items: [
+              { message: 'Foo' },
+              { message: 'Bar' }
+            ]
+          }
+        },
+      })
+      var example2 = new Vue({
+        el: '#example-2',
+        data: {
+          parentMessage: 'parent',
+          items: [
+              { message: 'Foo' },
+              { message: 'Bar' }
+            ]
+        }
+      })
+      new Vue({
+        el: '#v-for-object',
+        data: {
+          numbers: [ 1, 2, 3, 4, 5 ],
+          object: {
+            title: 'How to do lists in Vue',
+            author: 'Jane Doe',
+            publishedAt: '2021-09-22'
+          }
+        },
+        computed: {
+          evenNumbers: function () {
+            return this.numbers.filter(function (number) {
+              return number % 2 === 0
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 연습장 13: Named View</title>
+  </head>
+  <body>
+    <header>Vue.js Named View</header>
+    <div id="app">
+      <router-view name="header"></router-view>
+      <router-view></router-view>
+      <router-view name="footer"></router-view>
+    </div>
+    <div id="axios-test">
+      <button @click="getData">프레임워크 목록 가져오기</button>
+    </div>
+    <div id="app2">
+      <p :id="idA">아이디 바인딩 {{ idA }}</p>
+      <p :class="classA">클래스 바인딩 {{ classA }}</p>
+      <p :style="styleA">스타일 바인딩 {{ styleA }}</p>
+      <p>{{ message }}</p>
+      <p>{{ message + " !!!" }}</p>
+      <p>{{ message.split('').reverse().join('') }}</p>
+      <p>{{ reversedMessage }}</p>
+      <p>{{ message !== null ? 'Good' : 'Bad' }}</p>
+      <button @click="changeMessage">눌러봐</button>
+    </div>
+    <div id="app3">
+      <a v-if="flag">일어나라 용사여~~</a>
+      <ul>
+        <li v-for="(system, index) in systems" :key="index">{{ system }}</li>
+      </ul>
+      <p v-show="flag">깨어나라 용사여~~~</p>
+      <h5 v-bind:id="uid">멀리 보라</h5>
+      <button v-on:click="popupAlert">소리치기</button>
+      <input v-model="message" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <script>
+      new Vue({
+        el: '#app3',
+        data: {
+          flag: true,
+          systems: ['android', 'ios', 'windows'],
+          uid: 10,
+          message: '여기는 대한민국',
+        },
+        methods: {
+          popupAlert() {
+            return alert('일어나라고~~~');
+          },
+        },
+        watch: {
+          message(data) {
+            console.log('message의 값이 바뀝니다. : ', data);
+          },
+        },
+      });
+
+      let Body = {
+        template: '<div style="background-color: red">This is Body</div>',
+      };
+      let Header = {
+        template: '<div style="background-color: green">This is Header</div>',
+      };
+      let Footer = {
+        template: '<div style="background-color: gray">This is Footer</div>',
+      };
+      let Login = {
+        template:
+          '<div style="background-color: yellow">This is Login page.</div>',
+      };
+
+      const router = new VueRouter({
+        routes: [
+          {
+            path: '/',
+            components: {
+              default: Body,
+              header: Header,
+              footer: Footer,
+            },
+          },
+          {
+            path: '/login',
+            components: {
+              default: Login,
+              header: Header,
+              footer: Footer,
+            },
+          },
+        ],
+      });
+
+      let app = new Vue({
+        router,
+      }).$mount('#app');
+
+      new Vue({
+        el: '#axios-test',
+        methods: {
+          getData() {
+            axios
+              .get(
+                'https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json'
+              )
+              .then((response) => {
+                console.log(response);
+              });
+          },
+        },
+      });
+
+      new Vue({
+        el: '#app2',
+        data: {
+          idA: 10,
+          classA: 'container',
+          styleA: 'color: blue',
+          message: '미라클 모닝',
+        },
+        computed: {
+          reversedMessage() {
+            return this.message.split('').reverse().join('');
+          },
+        },
+        methods: {
+          changeMessage() {
+            this.message = '메시지를 변경합니다. 남다른 노력';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 연습장 11: Nested Router</title>
+  </head>
+  <body>
+    <header>Vue.js Nested Router ~~~</header>
+    <div id="app">
+      <h1>Nested Router 예제</h1>
+      <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <script>
+      let User = {
+        template: `
+          <div>
+            User Component
+            <router-view></router-view>
+          </div>
+        `,
+      };
+
+      let UserProfile = {
+        template: '<p>User Profile Component</p>',
+      };
+
+      let UserPost = {
+        template: '<p>User Post Component</p>',
+      };
+
+      let routes = [
+        {
+          path: '/user',
+          component: User,
+          children: [
+            {
+              path: 'posts',
+              component: UserPost,
+            },
+            {
+              path: 'profile',
+              component: UserProfile,
+            },
+          ],
+        },
+      ];
+
+      const router = new VueRouter({
+        routes,
+      });
+
+      let app = new Vue({
+        router,
+      }).$mount('#app');
+    </script>
+  </body>
+</html>

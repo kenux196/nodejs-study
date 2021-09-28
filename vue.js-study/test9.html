@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue.js 연습장 9: Component ~~~</title>
+  </head>
+  <body>
+    <header>Vue.js Component ~~~</header>
+    <div id="app">{{ message }}</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Miracle Morning',
+        },
+        beforeCreate() {
+          console.log('beforeCreate' + ' this.message : ' + this.message);
+        },
+        created() {
+          console.log('created' + ' this.message : ' + this.message);
+        },
+        mounted() {
+          console.log('mounted' + ' this.message : ' + this.message);
+          this.message = '미라클 모닝~~~~';
+        },
+        updated() {
+          console.log('updated' + ' this.message : ' + this.message);
+        },
+      });
+    </script>
+  </body>
+</html>
