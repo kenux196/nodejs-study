@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue.js 연습장 4: 조건부 렌더링 (v-if)</title>
+  </head>
+  <body>    
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <header>조건부 렌더링 v-if</header>
+    <div id="app">
+      <h1 v-if="awesome">Vue is awesome!</h1>
+      <h1 v-else>Oh no 😢</h1>
+      <template v-if="ok">
+        <h1>Title</h1>
+        <p>문장 1</p>
+        <p>문장 2</p>
+      </template>
+      <template v-if="loginType === 'username'">
+        <label>사용자 이름</label>
+        <input placeholder="사용자 이름을 입력하세요" :key="username-input">
+      </template>
+      <template v-else>
+        <label>이메일</label>
+        <input placeholder="이메일 주소를 입력하세요" :key="email-input">
+      </template>
+      <button v-on:click="changeLoginType">로그인 유형 변경</button>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            awesome: true,
+            ok: true,
+            loginType: 'username'
+          }
+        },
+        methods: {
+          changeLoginType: function () {
+            if (this.loginType === 'username') {
+              this.loginType = 'emain'
+            } else {
+              this.loginType = 'username'
+            }
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

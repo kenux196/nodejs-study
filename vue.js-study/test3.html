@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue.js 연습장 3</title>
+  </head>
+  <body>    
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <div id="app">
+      <div v-bind:class="classObject"></div>
+      <div v-bind:class="[activeClass, errorClass]"></div>
+      <my-component class="baz boo"></my-component>
+      <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">color</div>
+      <div v-bind:style="styleObject">styleObject</div>
+    </div>
+    <script>
+      Vue.component('my-component', {
+        template: '<p class="foo bar">Hi</P'
+      })
+
+      var vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            isAcitvie: true,
+            error: null,
+            activeClass: 'active',
+            errorClass: 'text-danger',
+            activeColor: 'red',
+            fontSize: 30,
+            styleObject: {
+              color: 'green',
+              fontSize: '20px'
+            }
+          }
+        },
+        computed: {
+          classObject: function () {
+            return {
+              active: this.isAcitvie && !this.error,
+              'text-danger': this.error && this.error.type === 'fatal'
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
