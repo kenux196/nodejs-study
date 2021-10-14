@@ -1,25 +1,16 @@
 <template>
   <div class="list-container">
-    <p>입력한 리스트</p>
-    <ul v-for="(item, index) in inputItems" :key="index">
+    <p>{{ title }}</p>
+    <ul v-for="(item, index) in propsdata" :key="index">
       <li>{{ item }}</li>
     </ul>
+    <p>{{ subtitle }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    inputItems: {
-      type: Array,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      items: ['a', 'b'],
-    };
-  },
+  props: ['propsdata', 'title', 'subtitle'],
 };
 </script>
 

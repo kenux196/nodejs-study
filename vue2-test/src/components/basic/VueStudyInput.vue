@@ -1,13 +1,25 @@
 <template>
   <div class="input-container">
     <p>입력창 (v-model)</p>
-    <input />
-    <button>입력</button>
+    <input type="text" v-model="newMessage" />
+    <button @click="inputMessage">입력</button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      newMessage: '',
+    };
+  },
+  methods: {
+    inputMessage() {
+      console.log('메시지 입력 = ', this.newMessage);
+      this.$emit('registerMessage', this.newMessage);
+    },
+  },
+};
 </script>
 
 <style scoped>
