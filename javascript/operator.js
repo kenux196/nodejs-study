@@ -1,4 +1,4 @@
-'use district'
+'use strict'
 
 // 1. String concatenation
 console.log('my' + ' cat');
